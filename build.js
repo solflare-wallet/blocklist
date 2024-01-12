@@ -9,6 +9,13 @@ const axios = require('axios');
         return item.url || null;
     }).filter(Boolean);
     const remoteNftBlocklist = yaml.load((await axios.get('https://raw.githubusercontent.com/phantom/blocklist/master/nft-blocklist.yaml')).data).map((item) => {
+        return item.mint || null;
+    }).filter(Boolean);
+
+    const localBlocklist = yaml.load(fs.readFileSync('./lists/blocklist.yaml', 'utf8')).map((item) => {
+        return item.url || null;
+    }).filter(Boolean);
+    const localNftBlocklist = yaml.load(fs.readFileSync('./lists/nft-blocklist.yaml', 'utf8')).map((item) => {
         if (item.mint) {
             return item.mint;
         }
@@ -20,12 +27,29 @@ const axios = require('axios');
         return null;
     }).filter(Boolean);
 
-    const localBlocklist = yaml.load(fs.readFileSync('./lists/blocklist.yaml', 'utf8')).map((item) => { return item.url });
-    const localNftBlocklist = yaml.load(fs.readFileSync('./lists/nft-blocklist.yaml', 'utf8')).map((item) => { return item.mint });
+    const localNftAllowlist = yaml.load(fs.readFileSync('./lists/nft-allowlist.yaml', 'utf8')).map((item) => {
+        if (item.mint) {
+            return item.mint;
+        }
+
+        if (item.tree) {
+            return item.tree;
+        }
+
+        return null;
+    }).filter(Boolean);
+
+    const combinedBlocklist = [...new Set([...remoteBlocklist, ...localBlocklist])];
+    const combinedNftBlocklist = [...new Set([...remoteNftBlocklist, ...localNftBlocklist])];
+
+    const nftAllowlistSet = new Set(localNftAllowlist);
+
+    const filteredBlocklist = combinedBlocklist.filter(url => !nftAllowlistSet.has(url));
+    const filteredNftBlocklist = combinedNftBlocklist.filter(mintOrTree => !nftAllowlistSet.has(mintOrTree));
 
     const data = {
-        'blocklist': [...new Set([...remoteBlocklist, ...localBlocklist])],
-        'nftBlocklist': [...new Set([...remoteNftBlocklist, ...localNftBlocklist])],
+        'blocklist': filteredBlocklist,
+        'nftBlocklist': filteredNftBlocklist,
         'whitelist': [],
         'fuzzylist': [],
     }
