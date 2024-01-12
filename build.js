@@ -27,9 +27,29 @@ const axios = require('axios');
         return null;
     }).filter(Boolean);
 
+    const localNftAllowlist = yaml.load(fs.readFileSync('./lists/nft-allowlist.yaml', 'utf8')).map((item) => {
+        if (item.mint) {
+            return item.mint;
+        }
+
+        if (item.tree) {
+            return item.tree;
+        }
+
+        return null;
+    }).filter(Boolean);
+
+    const combinedBlocklist = [...new Set([...remoteBlocklist, ...localBlocklist])];
+    const combinedNftBlocklist = [...new Set([...remoteNftBlocklist, ...localNftBlocklist])];
+
+    const nftAllowlistSet = new Set(localNftAllowlist);
+
+    const filteredBlocklist = combinedBlocklist.filter(url => !nftAllowlistSet.has(url));
+    const filteredNftBlocklist = combinedNftBlocklist.filter(mintOrTree => !nftAllowlistSet.has(mintOrTree));
+
     const data = {
-        'blocklist': [...new Set([...remoteBlocklist, ...localBlocklist])],
-        'nftBlocklist': [...new Set([...remoteNftBlocklist, ...localNftBlocklist])],
+        'blocklist': filteredBlocklist,
+        'nftBlocklist': filteredNftBlocklist,
         'whitelist': [],
         'fuzzylist': [],
     }
