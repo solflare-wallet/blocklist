@@ -9,6 +9,13 @@ const axios = require('axios');
         return item.url || null;
     }).filter(Boolean);
     const remoteNftBlocklist = yaml.load((await axios.get('https://raw.githubusercontent.com/phantom/blocklist/master/nft-blocklist.yaml')).data).map((item) => {
+        return item.mint || null;
+    }).filter(Boolean);
+
+    const localBlocklist = yaml.load(fs.readFileSync('./lists/blocklist.yaml', 'utf8')).map((item) => {
+        return item.url || null;
+    }).filter(Boolean);
+    const localNftBlocklist = yaml.load(fs.readFileSync('./lists/nft-blocklist.yaml', 'utf8')).map((item) => {
         if (item.mint) {
             return item.mint;
         }
@@ -19,9 +26,6 @@ const axios = require('axios');
 
         return null;
     }).filter(Boolean);
-
-    const localBlocklist = yaml.load(fs.readFileSync('./lists/blocklist.yaml', 'utf8')).map((item) => { return item.url });
-    const localNftBlocklist = yaml.load(fs.readFileSync('./lists/nft-blocklist.yaml', 'utf8')).map((item) => { return item.mint });
 
     const data = {
         'blocklist': [...new Set([...remoteBlocklist, ...localBlocklist])],
