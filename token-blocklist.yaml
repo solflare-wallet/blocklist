@@ -7,6 +7,6 @@
   - symbolStartsWith: bkinv
   - symbolEndsWith: nft1
   - name: sol rorca #1
-  - nameContians: rorca 
+  - nameContains: rorca 
   - nameStartsWith: orca dao
   - nameEndsWith:  initiative
