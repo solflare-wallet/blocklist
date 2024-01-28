@@ -1,0 +1,12 @@
+---
+  - symbol: oinv
+  - symbolContains: oinv
+  - symbolContains: bkinv
+  - symbolContains: sray #1
+  - symbolContains: meleanft1
+  - symbolStartsWith: bkinv
+  - symbolEndsWith: nft1
+  - name: sol rorca #1
+  - nameContians: rorca 
+  - nameStartsWith: orca dao
+  - nameEndsWith:  initiative
