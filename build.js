@@ -39,6 +39,25 @@ const axios = require('axios');
         return null;
     }).filter(Boolean);
 
+    const localStringFilters = {};
+    const possibleFilters = ['symbol', 'symbolStartsWith', 'symbolEndsWith', 'symbolContains', 'name', 'nameStartsWith', 'nameEndsWith', 'nameContains'];
+
+    yaml.load(fs.readFileSync('./lists/token-blocklist.yaml', 'utf8')).map((item) => {
+        for (let i = 0; i < possibleFilters.length; i++) {
+            const filter = possibleFilters[i];
+
+            if (item[filter]) {
+                if (!localStringFilters[filter]) {
+                    localStringFilters[filter] = [];
+                }
+
+                localStringFilters[filter].push(item[filter]);
+
+                break;
+            }
+        }
+    })
+
     const combinedBlocklist = [...new Set([...remoteBlocklist, ...localBlocklist])];
     const combinedNftBlocklist = [...new Set([...remoteNftBlocklist, ...localNftBlocklist])];
 
@@ -52,6 +71,7 @@ const axios = require('axios');
         'nftBlocklist': filteredNftBlocklist,
         'whitelist': [],
         'fuzzylist': [],
+        'stringFilters': localStringFilters,
     }
 
     const hash = new SHA3(256);
