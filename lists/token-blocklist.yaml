@@ -7,6 +7,10 @@
   - symbolStartsWith: bkinv
   - symbolEndsWith: nft1
   - name: sol rorca #1
+  - name: JUPS.io
   - nameContains: rorca 
+  - nameContains: jupairdrop.com
+  - nameContains: JUPS.io
+  - nameContains: meleadapp.com
   - nameStartsWith: orca dao
   - nameEndsWith:  initiative
