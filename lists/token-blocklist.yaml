@@ -9,5 +9,8 @@
   - name: sol rorca #1
   - name: JUPS.io
   - nameContains: rorca 
+  - nameContains: jupairdrop.com
+  - nameContains: JUPS.io
+  - nameContains: meleadapp.com
   - nameStartsWith: orca dao
   - nameEndsWith:  initiative
