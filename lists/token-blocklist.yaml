@@ -15,3 +15,5 @@
   - nameStartsWith: orca dao
   - nameEndsWith:  initiative
   - nameContains: jupevent.com
+  - nameContains: jupcase
+  - nameContains: sagabox
