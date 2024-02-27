@@ -7,7 +7,7 @@
   - symbolStartsWith: bkinv
   - symbolEndsWith: nft1
   - name: sol rorca #1
-  - name: JUPS.io
+  - name: jups.io
   - nameContains: rorca
   - nameContains: jupairdrop.com
   - nameContains: JUPS.io
@@ -17,3 +17,7 @@
   - nameContains: jupevent.com
   - nameContains: jupcase
   - nameContains: sagabox
+  - nameContains: jupiter airdrop
+  - nameContains: redeem nft voucher
+  - nameStartsWith: jupjup
+  - nameContains: jups lucky box 
