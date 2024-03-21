@@ -36,6 +36,10 @@ const axios = require('axios');
             return item.tree;
         }
 
+        if (item.collection) {
+            return item.collection;
+        }
+
         return null;
     }).filter(Boolean);
 
@@ -78,7 +82,7 @@ const axios = require('axios');
     const data = {
         'blocklist': filteredBlocklist,
         'nftBlocklist': filteredNftBlocklist,
-        'whitelist': [],
+        'whitelist': localNftAllowlist,
         'fuzzylist': [],
         'stringFilters': localStringFilters,
         'treeFilters': filteredTreeFilterlist
