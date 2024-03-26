@@ -29,3 +29,14 @@
   - nameContains: $jup
   - nameContains: ethcrate
   - nameContains: $bome
+  - nameContains: bomedrop
+  - nameContains: wifdrop
+  - nameContains: 1000$
+  - nameContains: 2000$
+  - nameContains: 3000$
+  - nameContains: 4000$
+  - nameContains: 5000$
+  - nameContains: 6000$
+  - nameContains: 7000$
+  - nameContains: 8000$
+  - nameContains: 9000$
