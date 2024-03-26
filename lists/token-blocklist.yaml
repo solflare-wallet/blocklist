@@ -27,3 +27,5 @@
   - nameContains: solgift
   - nameContains: $wif
   - nameContains: $jup
+  - nameContains: ethcrate
+  - nameContains: $bome
