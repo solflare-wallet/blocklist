@@ -38,6 +38,9 @@
   - nameContains: 5000$
   - nameContains: 6000$
   - nameContains: 7000$
+  - nameContains: jupclaim
+  - nameContains: bomeclaim
+  - nameContains: wifclaim
   - nameContains: 8000$
   - nameContains: 9000$
   - nameContains: sol for you
