@@ -29,8 +29,8 @@
   - nameContains: $jup
   - nameContains: ethcrate
   - nameContains: $bome
-  - nameContains: bomedrop
-  - nameContains: wifdrop
+  - nameContains: bome drop
+  - nameContains: wif drop
   - nameContains: 1000$
   - nameContains: 2000$
   - nameContains: 3000$
@@ -39,10 +39,12 @@
   - nameContains: 6000$
   - nameContains: 7000$
   - nameContains: jupclaim
-  - nameContains: bomeclaim
-  - nameContains: wifclaim
+  - nameContains: bome claim
+  - nameContains: wif claim
   - nameContains: 8000$
   - nameContains: 9000$
   - nameContains: sol for you
   - nameContains: 3000wif
   - nameContains: drop box
+  - nameContains: W drop
+  - nameContains: Wormhole drop
