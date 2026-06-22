@@ -369,7 +369,8 @@
   # CARATUM
   - collection: 5xuJkXMtQEihk6Myuo4Q27pqzD4ntXwct1a4s7hYZxor
   # Collector Crypt
-  - collection: CCryptWBYktukHDQ2vHGtVcmtjXxYzvw8XNVY64YN2Yf
+  - collection: CCryptWBYktukHDQ2vHGtVcmtjXxYzvw8XNVY64YN2Yf #1
+  - collection: CCryptUfeFSZ3Fgc9FLeKrhLVAP67FSqi1GuVoj9CRac #2
   # Return to Monkey
   - collection: 2Ydkmm3cDCmz18xLZoGbhqGXctaPqfQyWiEKeCQfpX9y
   # MonkeDAO Genesis
