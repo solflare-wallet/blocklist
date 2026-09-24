@@ -12,6 +12,17 @@ const axios = require('axios');
         return item.mint || null;
     }).filter(Boolean);
 
+    // mallow verified collections: flat array of collection addresses (legacy collection mints and
+    // MPL Core collections). Appended to the whitelist only; the allowlist subtraction below stays
+    // local so a third-party list can never unblock anything. Sorted so the content hash only
+    // changes when the set of addresses changes.
+    //
+    // Why cdn2? cdn.mallow.art is their CloudFront, cdn2.mallow.art is Cloudflare -- should be cheaper to hit them there.
+    // Nikola disccussed this with sloth from mallow over telegram.
+    const remoteMallowWhitelist = (await axios.get('https://cdn2.mallow.art/verified_collections.json')).data
+        .filter((item) => typeof item === 'string')
+        .sort();
+
     const localBlocklist = yaml.load(fs.readFileSync('./lists/blocklist.yaml', 'utf8')).map((item) => {
         return item.url || null;
     }).filter(Boolean);
@@ -82,7 +93,7 @@ const axios = require('axios');
     const data = {
         'blocklist': filteredBlocklist,
         'nftBlocklist': filteredNftBlocklist,
-        'whitelist': localNftAllowlist,
+        'whitelist': [...new Set([...localNftAllowlist, ...remoteMallowWhitelist])],
         'fuzzylist': [],
         'stringFilters': localStringFilters,
         'treeFilters': filteredTreeFilterlist
