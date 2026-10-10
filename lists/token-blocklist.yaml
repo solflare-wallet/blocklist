@@ -2,11 +2,11 @@
   - symbol: oinv
   - symbolContains: oinv
   - symbolContains: bkinv
-  - symbolContains: sray #1
+  - symbolContains: 'sray #1'
   - symbolContains: meleanft1
   - symbolStartsWith: bkinv
   - symbolEndsWith: nft1
-  - name: sol rorca #1
+  - name: 'sol rorca #1'
   - name: jups.io
   - nameContains: rorca
   - nameContains: jupairdrop.com

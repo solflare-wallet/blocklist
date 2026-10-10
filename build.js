@@ -3,6 +3,10 @@ const fs = require('fs');
 const { SHA3 } = require('sha3');
 const axios = require('axios');
 
+// Hostnames are case-insensitive and browsers always report them in lowercase, so entries such as
+// "JUPUNBOX.com" would never match. Normalize every domain before de-duplicating.
+const normalizeDomain = (url) => (typeof url === 'string' ? url.trim().toLowerCase() : url);
+
 
 ;(async () => {
     const remoteBlocklist = yaml.load((await axios.get('https://raw.githubusercontent.com/phantom/blocklist/master/blocklist.yaml')).data).map((item) => { 
@@ -81,7 +85,7 @@ const axios = require('axios');
         }
     })
 
-    const combinedBlocklist = [...new Set([...remoteBlocklist, ...localBlocklist])];
+    const combinedBlocklist = [...new Set([...remoteBlocklist, ...localBlocklist].map(normalizeDomain))];
     const combinedNftBlocklist = [...new Set([...remoteNftBlocklist, ...localNftBlocklist])];
 
     const nftAllowlistSet = new Set(localNftAllowlist);
